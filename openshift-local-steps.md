@@ -53,15 +53,15 @@ hal config storage edit --type s3
 hal deploy apply
 ```
 
-# Soften security restrictions
+## Soften security restrictions to be able to run Spinnaker
 
-## Make developer an admin in spinnaker project
+### Make developer an admin in spinnaker project
 
 ```bash
 oc adm policy add-role-to-user admin developer -n spinnaker
 ```
 
-## Allow to run containers within spinnaker project from any user
+### Allow to run containers within spinnaker project from any user
 
 ```bash
 oc -n spinnaker edit scc restricted
@@ -74,4 +74,16 @@ requiredDropCapabilities:
     type: RunAsAny
   seLinuxContext:
 ...
+```
+
+## Fix routing to Spinnaker Gate from Spinnaker Deck by modifying secret `spin-deck-files`.  Content is similar to what we have in `spinnaker/deck-settings.js` folder
+
+```js
+var gateHost = 'http://spin-gate-spinnaker.okd';
+```
+
+## Configure origin to allow request from http://*-spinnaker.okd. To do this we can define env variable for Spinnaker Gate pod.
+
+```bash
+CORS_ALLOWEDORIGINSPATTERN = .*(\.okd)
 ```
