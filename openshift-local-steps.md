@@ -76,6 +76,8 @@ requiredDropCapabilities:
 ...
 ```
 
+## Add routes to Spinnaker Deck and Gate services to allow access from OpenShift cluster.
+
 ## Fix routing to Spinnaker Gate from Spinnaker Deck by modifying secret `spin-deck-files`.  Content is similar to what we have in `spinnaker/deck-settings.js` folder
 
 ```js
