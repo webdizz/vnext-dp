@@ -1,0 +1,13 @@
+name: edp
+channels:
+    - https://conda.anaconda.org/menpo
+    - conda-forge
+    - anaconda
+dependencies:
+    - python==3.6.*
+    # for VS code
+    - pylint
+    - autopep8
+    - pip
+    - pip:
+        - ansible==2.6.*
